@@ -13,9 +13,9 @@ TAKIPI_STORAGE_SERVICE=$TAKIPI_STORAGE_HOME/etc/$SERVICE_NAME
 function log
 {
   DATE=`date +%Y-%m-%d-%H-%M-%S`
-  MASSEGE=$1
+  MESSAGE=$1
 
-  echo $DATE $MASSEGE >> $SCRIPT_LOG
+  echo $DATE $MESSAGE >> $SCRIPT_LOG
 }
 
 function privileges_validation()
