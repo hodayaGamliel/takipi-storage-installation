@@ -1,0 +1,110 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          takipi-storage
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start takipi-storage daemon
+### END INIT INFO
+
+#set -x
+
+SERVICE_NAME=takipi-storage
+TAKIPI_STORAGE_HOME=/opt/takipi-storage
+PATH_TO_JAR=$TAKIPI_STORAGE_HOME/lib/takipi-storage-1.0.0.jar
+PATH_TO_SETTINGS=$TAKIPI_STORAGE_HOME/settings.yml
+LOG=$TAKIPI_STORAGE_HOME/log/takipi-storage.log
+
+function log_create
+{
+  if [ ! -f "$LOG" ]; then
+    if [ ! -d "$TAKIPI_STORAGE_HOME/log" ];then
+       mkdir $TAKIPI_STORAGE_HOME/log
+    fi
+    touch $TAKIPI_STORAGE_HOME/log/takipi-storage.log
+  fi
+}
+
+function current_pid()
+{
+    TEMP_PID=`ps -ef | grep takipi-storage | grep -v "grep" | awk {'print $2'} | head -1`
+    echo $TEMP_PID
+}
+
+function do_stop()
+{
+    PID=$(current_pid)
+
+    if ps -p $PID  > /dev/null  2>&1
+    then
+        echo "Stopping $SERVICE_NAME ..."
+        echo $PID
+        kill -9 $PID
+        echo "$SERVICE_NAME stopped ..."
+    else
+        echo "$SERVICE_NAME is not running ..."
+    fi
+}
+
+function do_start()
+{
+  PID=$(current_pid)
+
+  if ps -p $PID  > /dev/null  2>&1
+  then
+      echo "$SERVICE_NAME already running..."
+      echo $PID
+  else
+    log_create
+    echo "Starting $SERVICE_NAME ..."
+
+      nohup java -jar $PATH_TO_JAR server $PATH_TO_SETTINGS > $LOG &
+    echo "$SERVICE_NAME started ..."
+  fi
+}
+
+function do_status()
+{
+    PID=$(current_pid)
+
+    if  ps -p  $PID > /dev/null  2>&1
+    then
+        return_value='true'
+    else
+        return_value='false'
+    fi
+
+    echo $return_value
+}
+
+case $1 in
+    start)
+        do_start
+    ;;
+    stop)
+        do_stop
+    ;;
+    restart)
+        CURRENT_STATUS=$(do_status)
+        if $CURRENT_STATUS == 'true'
+        then
+            do_stop
+            do_start
+        else
+            echo "$SERVICE_NAME is not running ..."
+        fi
+    ;;
+    status)
+        CURRENT_STATUS=$(do_status)
+        if $CURRENT_STATUS == 'true'
+        then
+            echo "$SERVICE_NAME running ..."
+            PID=$(current_pid)
+            echo $PID
+        else
+            echo "$SERVICE_NAME is not running ..."
+        fi
+    ;;
+esac

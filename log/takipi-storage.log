@@ -1,0 +1,28 @@
+INFO  [2015-01-27 18:23:18,182] io.dropwizard.server.ServerFactory: Starting takipi-storage
+ (o)__(o)           _ wW  Ww ))   wW  Ww 
+ (__  __)/)  (OO) .' )(O)(O)(o0)-.(O)(O) 
+   (  )(o)(O) ||_/ .'  (..)  | (_))(..)  
+    )(  //\\  |   /     ||   | .-'  ||   
+   (  )|(__)| ||\ \    _||_  |(    _||_  
+    )/ /,-. |(/\)\ `. (_/\_)  \)  (_/\_) 
+   (  -'   ''     `._)        (          
+
+INFO  [2015-01-27 18:23:18,281] org.eclipse.jetty.setuid.SetUIDListener: Opened application@6b076a26{HTTP/1.1}{0.0.0.0:8080}
+INFO  [2015-01-27 18:23:18,281] org.eclipse.jetty.setuid.SetUIDListener: Opened admin@33ca1baf{HTTP/1.1}{0.0.0.0:8081}
+INFO  [2015-01-27 18:23:18,289] org.eclipse.jetty.server.Server: jetty-9.0.z-SNAPSHOT
+INFO  [2015-01-27 18:23:18,447] com.sun.jersey.server.impl.application.WebApplicationImpl: Initiating Jersey application, version 'Jersey: 1.18.1 02/19/2014 03:28 AM'
+INFO  [2015-01-27 18:23:18,573] io.dropwizard.jersey.DropwizardResourceConfig: The following paths were found for the configured resources:
+
+    DELETE  /storage/v1/binary/{serviceId}/{type}/{key} (com.takipi.oss.storage.resources.BinaryStorageResource)
+    GET     /storage/v1/binary/{serviceId}/{type}/{key} (com.takipi.oss.storage.resources.BinaryStorageResource)
+    HEAD    /storage/v1/binary/{serviceId}/{type}/{key} (com.takipi.oss.storage.resources.BinaryStorageResource)
+    PUT     /storage/v1/binary/{serviceId}/{type}/{key} (com.takipi.oss.storage.resources.BinaryStorageResource)
+
+INFO  [2015-01-27 18:23:19,083] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@4a41d5e8{/,null,AVAILABLE}
+INFO  [2015-01-27 18:23:19,091] io.dropwizard.setup.AdminEnvironment: tasks = 
+
+    POST    /tasks/gc (io.dropwizard.servlets.tasks.GarbageCollectionTask)
+
+INFO  [2015-01-27 18:23:19,101] org.eclipse.jetty.server.handler.ContextHandler: Started i.d.j.MutableServletContextHandler@652ac066{/,null,AVAILABLE}
+INFO  [2015-01-27 18:23:19,111] org.eclipse.jetty.server.ServerConnector: Started application@6b076a26{HTTP/1.1}{0.0.0.0:8080}
+INFO  [2015-01-27 18:23:19,112] org.eclipse.jetty.server.ServerConnector: Started admin@33ca1baf{HTTP/1.1}{0.0.0.0:8081}

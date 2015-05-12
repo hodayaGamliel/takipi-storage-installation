@@ -1,0 +1,8 @@
+com/takipi/oss/storage/fs/folder/FolderFilesystem.class
+com/takipi/oss/storage/fs/api/Filesystem.class
+com/takipi/oss/storage/resources/BinaryStorageResource.class
+com/takipi/oss/storage/TakipiStorageMain.class
+com/takipi/oss/storage/fs/Record.class
+com/takipi/oss/storage/health/FilesystemHealthCheck.class
+com/takipi/oss/storage/fs/folder/HashSubfolderFilesystem.class
+com/takipi/oss/storage/TakipiStorageConfiguration.class
