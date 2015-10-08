@@ -1,4 +1,4 @@
-folderPath: /opt/takipi-storage/storage
+folderPath: /opt/takipi-storage/
 maxUsedStoragePercentage: 0.95
 enableCors: true
 corsOrigins: "*"
